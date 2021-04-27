@@ -1,0 +1,22 @@
+We want to play codenames on the computer. We want to have an instance of the game consisting of the board, the key, 1 red and 1 blue key master, 1 red and 1 blue guess team. The following conditions must hold : 
+
+1) The key may only be visible to the key masters.
+2) The game ends when either the red or blue team wins.
+
+We may start with two classes - Game and Player. 
+
+#Game#
+Game should initialize an instance with a random selection of n = 3k+1 words, where k = 8 for the ordinary game. It may accept a wordlist, or have one as default. 
+Game should also initialize the instance with 2 masters, and 2 teams. 
+A random selection of n words must be stored in an instance variable (list of lists).
+A random key must then also be generated for k red words, k blue words, k white words, and 1 black word and be stored away (maybe as dict).
+Game should allow printing out the board at any state by anyone. For eg. the instance may be passed to a print method of Player.
+Addtl methods for game play.
+
+
+#Player#
+Player should initialize instances of players. A boolean keyword may indicate whether or not it is a master. The property must also be stored away in an instance variable. 
+Each Player may print the state of the board.
+Masters may print the key. 
+Players should be able to get the property isMaster out.
+

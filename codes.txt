@@ -1,0 +1,72 @@
+1.	Date Difference
+
+def dateDiff(date1, date2) : 
+"""
+Calculate number of days between date1 and date2.
+date1 : str, in format DD-MM-YYYY
+date2 : str, in format DD-MM-YYYY
+returns : int, number of days between dates
+"""
+
+
+2.	Bracket match up
+
+def bracketCheck(s) : 
+	"""
+	Check if the opening and closing brackets match up in s.
+	s : str
+	return : boolean, True if brackets match up, False otherwise
+	"""
+	
+	correspond = {'}' : '{', ']' : '[', ')' : '('}
+	brackets = []
+	for char in s : 
+		if char == '{' or char == '(' or char == '[' : 
+			brackets.append(char)
+		elif char == '}' or char == ')' or char == ']' : 
+			try : 
+				if brackets[-1] == correspond[char] : 
+					brackets = brackets[:-1]
+				else :
+					return False
+			except : 
+				return False
+	if len(brackets) == 0 : 
+		return True
+	else :
+		return False
+
+
+3.	Camel Case
+
+def camelCase(text) : 
+	"""
+	text : str, text to be converted to camel case
+	returns : str, camel case of entered text
+	Eg. : "the_Serpent-isDead" -> "theSerpentIsDead"
+	"""
+	words = []
+	curr = ""
+	#run through the string to extract words to a list
+	for char in text : 
+		#if a - or _ is encountered append the so-far stored characters to the list and flush. Repeat.
+		if char == "-" or char == "_" : 
+			if len(curr) > 0 : 
+				words.append(curr)
+				curr = ""
+		#keep storing characters until a - or _ is encountered
+		else : 
+			curr += char
+	if curr != "" :
+		words.append(curr)
+	camelWords = []
+	if len(words) > 0 : 
+		camelWords.append(words[0])
+		#go through list and capitalize first letter of each word starting from 2nd word
+		for word in words[1:] :
+			camelWord = word[0].upper()+word[1:]
+			camelWords.append(camelWord)
+	#join words in list
+	return "".join(camelWords)
+ 
+		

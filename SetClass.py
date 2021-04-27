@@ -57,3 +57,11 @@ class Set(object) :
 			if elem in other.elements : 
 				intersectSet.insert(elem)
 		return intersectSet
+	
+	def complement(self, universal) : 
+		complementSet = Set()
+		for elem in universal.elements : 
+			if elem not in self.elements : 
+				complementSet.insert(elem)
+		return complementSet
+	
