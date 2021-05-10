@@ -264,6 +264,66 @@ def nbMonths(startPriceOld, startPriceNew, savingperMonth, percentLossByMonth) :
 		balance = priceDiff + savingperMonth*months
 	return [months, round(balance)]
 	
+10.	TitleCase
+def title_case(title, minor_words = "") :
+	"""
+	title : str, text to be converted to title case
+	minor_words : str, str of space-separated words to be kept in lowercase always unless they're the first word
+	returns : str, in title case
+	Eg : "the wind in the willows", "the IN" -> "The Wind in the Willows"
+	"""
+	
+	# for each input we need to pre-process to ensure that cases are ignored so convert both to lowercase
+	# create a dictionary with minor_words
+	# go through string capitalizing each word and appending to a list if not in dictionary
+	# else just add as is
+	# join words in list
+	
+	minorDic = {}
+	minorList = minor_words.lower().split()
+	for word in minorList :
+		minorDic[word] = 1
+	out = []
+	titleList = title.lower().split()
+	if len(title) > 0 :
+		out.append(titleList[0][0].upper()+titleList[0][1:])
+	for word in titleList[1:] : 
+		try : 
+			if minorDic[word] == 1 : 
+				out.append(word)
+		except : 
+			out.append(word[0].upper() + word[1:])
+	return " ".join(out)
+	
 
+11.	Multiplicative Persistence
+def persistence(n) : 
+	"""
+	n : int, number whose multiplicative persistence is to be calculated
+	returns : int, persistence := number of times the digits have to be 
+			multiplied with each other to get to a single digit number
+	Eg. : 99 -> 2, 9x9 = 81, 8x1 = 8
+	"""
+	# dictionary of seen numbers
+	seen = {}
+	ndigits = len(str(n))
+	persist = 0
+	# while single digit is not reached
+	while ndigits > 1 : 
+		prod = 1
+		# get product of digits
+		for char in str(n) : 
+			prod *= int(char)
+		n = prod
+		# if we reach a number we've already seen, we're in 
+		# an infinite loop. Exit!
+		if seen.get(n) : 
+			return None
+		# otherwise add to number of times already multiplied
+		else : 
+			persist += 1
+		ndigits = len(str(n))
+	return persist
+	
 		
 	
